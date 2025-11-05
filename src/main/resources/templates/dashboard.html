@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1 th:text="'Welcome ' + ${username}"></h1>
+<form method="post" action="/logout">
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+  <button type="submit" >logout</button>
+</form>
+<p th:if="${copiedContent}" style="color: lightgreen" th:text="${copiedContent}">Copied Content</p>
+<p th:if="${error}" style="color: red" th:text="${error}">Copied Content</p>
+<p>Fetch Clipboard</p>
+<form th:action="@{/dashboard}" method="get">
+  <p>Code: <input type="text" name="uuid" placeholder="code" /></p>
+  <button type="submit">Fetch</button>
+</form>
+<p>Create Clipboard</p>
+<form th:action="@{/dashboard}" method="post">
+  <input type="text" name="content" placeholder="content" />
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+  <button type="submit">Create</button>
+</form>
+<h2>Past Created Clipboards</h2>
+<table>
+  <tr>
+    <td>Code</td>
+    <td>Content</td>
+    <td>Created on</td>
+  </tr>
+<th:block th:each="clip : ${clips}">
+  <tr>
+    <td th:text="${clip.getUuid()}"></td>
+    <td th:text="${clip.getContent()}"> </td>
+    <td th:text="${clip.getTimestamp()}"></td>
+  </tr>
+</th:block>
+</table>
+<h2>History</h2>
+<table>
+  <tr>
+    <td>Clipboard</td>
+  </tr>
+  <th:block th:each="h : ${history}">
+    <tr>
+      <td th:text="${h}"></td>
+    </tr>
+  </th:block>
+</table>
+</body>
+</html>
