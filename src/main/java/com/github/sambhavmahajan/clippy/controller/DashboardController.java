@@ -23,6 +23,7 @@ public class DashboardController {
     }
     public void injectDashboard(Model model, Principal principal) {
         AppUser usr = appUserService.getUserByUsername(principal.getName());
+        while(usr == null) usr = appUserService.getUserByUsername(principal.getName());
         model.addAttribute("clips", usr.getClips());
         model.addAttribute("history", usr.getHistory());
         model.addAttribute("username", usr.getUsername());

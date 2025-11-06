@@ -36,7 +36,7 @@ public class AppUserService implements UserDetailsService {
         return usr;
     }
     @Transactional
-    public String addClip(ClipboardDTO clipDTO, Principal principal) {
+    public String addClip(ClipboardDTO clipDTO, Principal principal){
         Clipboard clip = new Clipboard();
         clip.setContent(clipDTO.getContent());
         AppUser usr = repo.findByUsername(principal.getName()).orElseThrow(() ->
