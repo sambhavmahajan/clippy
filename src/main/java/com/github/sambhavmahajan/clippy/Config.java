@@ -16,10 +16,17 @@ public class Config {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(Customizer.withDefaults())
         .authorizeHttpRequests(
-                auth -> auth.requestMatchers("/login", "/register", "/shorturl/**", "/profile/**").permitAll()
+                auth -> auth.requestMatchers( "/login",
+                                "/register",
+                                "/error",
+                                "/css/**",
+                                "/js/**",
+                                "/images/**",
+                                "/fonts/**",
+                                "/favicon.ico").permitAll()
                         .anyRequest().authenticated()
         ).formLogin(form -> form.loginPage("/login")
-                        .defaultSuccessUrl("/dashboard")
+                        .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
                 .logout(logout -> logout.logoutUrl("/logout").

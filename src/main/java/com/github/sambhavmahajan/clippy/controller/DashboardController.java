@@ -15,7 +15,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/dashboard")
+@RequestMapping(value={"/dashboard", "/", ""})
 public class DashboardController {
     private AppUserService appUserService;
     public DashboardController(AppUserService appUserService) {
@@ -30,7 +30,9 @@ public class DashboardController {
     }
     @GetMapping
     public String dashboard(Model model, Principal principal, @RequestParam(required = false) String uuid) {
+        System.out.println("I am at dashboard");
         if (uuid != null && !uuid.isEmpty()) {
+            System.out.println("User exists");
             Clipboard clip = appUserService.getClipByUuid(uuid.trim());
             String content = "No content found!";
             if(clip != null) {
