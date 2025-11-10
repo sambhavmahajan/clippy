@@ -275,8 +275,7 @@
   <div class="forms-grid">
     <div class="card">
       <h2>Fetch Clipboard</h2>
-      <form th:action="@{/dashboard}" method="POST">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <form th:action="@{/dashboard}" method="GET">
         <div>
           <label>Clipboard Code</label>
           <input type="text" name="uuid" placeholder="Enter clipboard code" />
