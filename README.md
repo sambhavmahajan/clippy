@@ -3,7 +3,7 @@ Clippy is an online clipboard. It simplifies sharing unsecured data that needs t
 ## Requirements
 |Requirement| Version |
 |-----------|---------|
-|Java|28.1.1, build 4eba377|
+|Java|21|
 |Docker|28.1.1, build 4eba377
 ## Features
 - Share text snippets across devices instantly
