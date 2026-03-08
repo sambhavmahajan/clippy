@@ -22,6 +22,7 @@ public class Config {
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
+                                "/logout",
                                 "/fonts/**",
                                 "/favicon.ico").permitAll()
                         .anyRequest().authenticated()
